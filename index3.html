@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Угадай место</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        img {
+            max-width: 300px;
+            margin: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Угадай место, где сделана фотография</h1>
+
+    <div id="images">
+        <div>
+            <img src="1.jpg" alt="Картинка 1">
+            <input type="text" placeholder="Введите место" data-answer="Уфа">
+        </div>
+        <div>
+            <img src="2.jpg" alt="Картинка 2">
+            <input type="text" placeholder="Введите место" data-answer="Гараж">
+        </div>
+        <div>
+            <img src="3.jpg" alt="Картинка 3">
+            <input type="text" placeholder="Введите место" data-answer="Лес">
+        </div>
+        <div>
+            <img src="4.jpg" alt="Картинка 4">
+            <input type="text" placeholder="Введите место" data-answer="Машина">
+        </div>
+        <div>
+            <img src="5.jpg" alt="Картинка 5">
+            <input type="text" placeholder="Введите место" data-answer="Бугульчан">
+        </div>
+        <div>
+            <img src="6.jpg" alt="Картинка 6">
+            <input type="text" placeholder="Введите место" data-answer="Роллы">
+        </div>
+    </div>
+
+    <button id="checkAnswers">Проверить ответы</button>
+    <div class="result" id="resultMessage"></div>
+
+    <script>
+        document.getElementById('checkAnswers').addEventListener('click', function() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let allCorrect = true;
+
+            inputs.forEach(input => {
+                const userAnswer = input.value.trim();
+                const correctAnswer = input.getAttribute('data-answer');
+
+                if (userAnswer === correctAnswer) {
+                    input.style.borderColor = 'green'; // Зелёная рамка для правильного ответа
+                } else {
+                    input.style.borderColor = 'red'; // Красная рамка для неправильного ответа
+                    allCorrect = false;
+                }
+            });
+
+            const resultMessage = document.getElementById('resultMessage');
+            if (allCorrect) {
+                resultMessage.textContent = ''; // Очистить сообщение
+                window.location.href = 'index2.html'; // Переход на index2.html
+            } else {
+                resultMessage.textContent = 'Неправильно!'; // Сообщение об ошибке
+            }
+        });
+    </script>
+
+</body>
+</html>
